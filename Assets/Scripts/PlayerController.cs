@@ -81,9 +81,32 @@ public class PlayerController : MonoBehaviour
         if (!gridManager.isInsideBounds(targetCellPos)) return; // Vérifie si la cellule cible est dans les limites
 
         var targetCell = gridManager.GetCellByCellPosition(targetCellPos); // Récupère la cellule cible
-        if (targetCell == null || targetCell.isOccupied) return; // Vérifie si la cellule cible est valide et non occupée
+
+        if (targetCell == null)
+        {
+            return;
+        }
+
+        if (targetCell.isOccupied) // Si la cellule cible est occupée, par un ennemie ou autre
+        {
+            Collider2D hit = Physics2D.OverlapPoint(targetCell.worldPosition); // Vérifie s'il y a un collider à la position de la cellule cible
+
+            if(hit != null && hit.CompareTag("Ennemy")) // Si le collider appartient à un ennemi
+            {
+                OnPlayerEnemyCollision();
+                // Ici, vous pouvez ajouter la logique de fin de jeu
+            }
+
+            return; // Ne pas se déplacer vers une cellule occupée
+        }
 
         StartCoroutine(MoveToCellRoutine(targetCell)); // Démarre la coroutine de mouvement
+    }
+
+    void OnPlayerEnemyCollision() // Gère la collision avec un ennemi
+    {
+        Debug.Log("Player collided with an enemy! Game Over!");
+        // Ici, vous pouvez ajouter la logique de fin de jeu
     }
 
     IEnumerator MoveToCellRoutine(GridManager.Cell targetCell)
