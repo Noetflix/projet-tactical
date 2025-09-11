@@ -91,9 +91,9 @@ public class PlayerController : MonoBehaviour
         {
             Collider2D hit = Physics2D.OverlapPoint(targetCell.worldPosition); // Vérifie s'il y a un collider à la position de la cellule cible
 
-            if(hit != null && hit.CompareTag("Ennemy")) // Si le collider appartient à un ennemi
+            if(hit != null && hit.GetComponent<EnnemyController>() != null) // Si le collider appartient à un ennemi
             {
-                OnPlayerEnemyCollision();
+                OnPlayerEnnemyCollision(hit.GetComponent<EnnemyController>());
                 // Ici, vous pouvez ajouter la logique de fin de jeu
             }
 
@@ -103,10 +103,19 @@ public class PlayerController : MonoBehaviour
         StartCoroutine(MoveToCellRoutine(targetCell)); // Démarre la coroutine de mouvement
     }
 
-    void OnPlayerEnemyCollision() // Gère la collision avec un ennemi
+    void OnPlayerEnnemyCollision(EnnemyController enemy) // Gère la collision avec un ennemi
     {
-        Debug.Log("Player collided with an enemy! Game Over!");
-        // Ici, vous pouvez ajouter la logique de fin de jeu
+        Debug.Log("Collision Player <-> Ennemi !");
+
+        // Appelle la méthode StartCombat du singleton TriggerCombat
+        if (TriggerCombat.Instance != null)
+        {
+            TriggerCombat.Instance.StartCombat(this.gameObject, enemy.gameObject);
+        }
+        else
+        {
+            Debug.LogError("TriggerCombat instance is null!");
+        }
     }
 
     IEnumerator MoveToCellRoutine(GridManager.Cell targetCell)

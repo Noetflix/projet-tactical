@@ -69,7 +69,7 @@ public class EnnemyController : MonoBehaviour
 
     void AttemptRandomMove() // Tente un mouvement aléatoire
     {
-      
+
         Vector3Int[] directions = new Vector3Int[] // Directions possibles (haut, bas, gauche, droite)
         {
             new Vector3Int(0, 1, 0),   // Haut
@@ -96,22 +96,22 @@ public class EnnemyController : MonoBehaviour
                 ); // Recalcule la position cible
 
             if (!gridManager.isInsideBounds(targetPos))
-                return; 
+                return;
         }
-        
+
 
         var targetCell = gridManager.GetCellByCellPosition(targetPos); // Récupère la cellule cible
 
 
-        if(targetCell == null)
+        if (targetCell == null)
         {
             Debug.LogError("Target cell is null!");
             return;
         }
 
-        if(targetCell.isOccupied) // Si la cellule cible est occupée par un autre ennemi, player ou autre
+        if (targetCell.isOccupied) // Si la cellule cible est occupée par un autre ennemi, player ou autre
         {
-            Debug.Log("Target cell is occupied!");
+            CheckCollisionWithPlayer(targetCell); // Vérifie la collision avec le joueur
             return;
         }
 
@@ -143,5 +143,22 @@ public class EnnemyController : MonoBehaviour
         currentCell = targetCell; // Met à jour la cellule actuelle
 
         isMoving = false; // Marque le joueur comme immobile
+    }
+
+    void CheckCollisionWithPlayer(GridManager.Cell targetCell) // Vérifie la collision avec le joueur
+    {
+        Collider2D hit = Physics2D.OverlapPoint(targetCell.worldPosition); // Vérifie s'il y a un collider à la position de la cellule actuelle
+
+        if (hit != null && hit.GetComponent<PlayerController>() != null) // Si le collider appartient au joueur
+        {
+            if (TriggerCombat.Instance != null) // Appelle la méthode StartCombat du singleton TriggerCombat
+            {
+                TriggerCombat.Instance.StartCombat(hit.gameObject, this.gameObject);
+            }
+            else
+            {
+                Debug.LogError("TriggerCombat instance is null!");
+            }
+        }
     }
 }
