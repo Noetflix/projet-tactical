@@ -176,6 +176,21 @@ MonoBehaviour:
   characterName: 
   currentHealth: 0
   currentMana: 0
+  attacks:
+  - attackName: Missile magique
+    description: "Projette des  missiles magique  sur l\u2019ennemi."
+    damage: 15
+    manaCost: 7
+    range: 6
+    type: 2
+    icon: {fileID: 0}
+  - attackName: Soin
+    description: Soigne le lanceur de sort
+    damage: 10
+    manaCost: 15
+    range: 6
+    type: 2
+    icon: {fileID: 0}
   inventory: []
 --- !u!61 &974175091372106106
 BoxCollider2D:

@@ -176,6 +176,21 @@ MonoBehaviour:
   characterName: 
   currentHealth: 0
   currentMana: 0
+  attacks:
+  - attackName: "Tir p\xE9n\xE9trant"
+    description: "Ignore la moiti\xE9 de la d\xE9fense ennemie."
+    damage: 10
+    manaCost: 10
+    range: 6
+    type: 1
+    icon: {fileID: 0}
+  - attackName: Tir multiple
+    description: "Tire sur 3 ennemis proches en m\xEAme temps."
+    damage: 15
+    manaCost: 20
+    range: 4
+    type: 0
+    icon: {fileID: 0}
   inventory: []
 --- !u!61 &2907934934482303103
 BoxCollider2D:

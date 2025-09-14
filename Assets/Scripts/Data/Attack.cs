@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "NewAttack", menuName = "RPG/Attack", order = 0)]
+[System.Serializable]
 public class Attack
 {
     // Détails de l'attaque
@@ -18,6 +18,7 @@ public class Attack
     public enum AttackType
     {
         Physique,
+        Perforant,
         Magique,
         Soin,
         Buff,
