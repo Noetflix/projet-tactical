@@ -67,7 +67,7 @@ public class EnnemyController : MonoBehaviour
         }
     }
 
-    void AttemptRandomMove() // Tente un mouvement aléatoire
+    public void AttemptRandomMove() // Tente un mouvement aléatoire
     {
 
         Vector3Int[] directions = new Vector3Int[] // Directions possibles (haut, bas, gauche, droite)

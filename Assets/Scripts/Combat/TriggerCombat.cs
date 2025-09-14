@@ -24,7 +24,7 @@ public class TriggerCombat : MonoBehaviour
     /// Appeler quand le player et un ennemi se rencontre
     /// </summary>
     
-    public void  StartCombat(GameObject player, GameObject enemy)
+    public void StartCombat(GameObject player, GameObject enemy)
      {
         Debug.Log($"Combat déclenché ! Player: {player.name}, Enemy: {enemy.name}");
         // Ajouter ici la logique pour démarrer le combat, comme charger une scène de combat ou activer un mode combat
