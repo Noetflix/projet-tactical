@@ -10,7 +10,8 @@ public class PlayerController : MonoBehaviour
 
     [Header("Travel")]
     public float moveDuration = 0.12f; // Durée du mouvement entre les cellules
-    private bool  isMoving = false; // Marque si le joueur est en mouvement
+    public bool canMovefree = true; // Si le joueur peut se déplacer librement
+    private bool isMoving = false; // Marque si le joueur est en mouvement
 
     private GridManager.Cell currentCell; // Cellule actuelle du joueur
 
@@ -60,6 +61,8 @@ public class PlayerController : MonoBehaviour
     // --- Input Keyboard ---
     void HandleKeyboardInput()
     {
+        if(!canMovefree) return; // Si le joueur ne peut pas se déplacer librement, ne rien faire
+
         int  dx=0, dy=0; // Direction de mouvement
 
         // Vérifie les entrées de flèches directionnelles

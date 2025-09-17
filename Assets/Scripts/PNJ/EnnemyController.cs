@@ -161,4 +161,18 @@ public class EnnemyController : MonoBehaviour
             }
         }
     }
+
+    public void StopMovement() // Arrête le mouvement de l'ennemi
+    {
+        StopAllCoroutines(); // Arrête toutes les coroutines
+        isMoving = false; // Marque l'ennemi comme immobile
+
+        Debug.Log("Mouvement Ennemi Stoppé");
+    }
+
+    public void ResumeMovement() // Reprend le mouvement de l'ennemi
+    {
+        StartCoroutine(RandomMovementRoutine()); // Redémarre la routine de mouvement aléatoire
+        Debug.Log("Mouvement Ennemi Repris");
+    }
 }

@@ -160,6 +160,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gridManager: {fileID: 0}
   moveDuration: 0.12
+  canMovefree: 1
 --- !u!114 &3736361936557713456
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -192,6 +193,7 @@ MonoBehaviour:
     type: 2
     icon: {fileID: 0}
   inventory: []
+  isInCombat: 0
 --- !u!61 &974175091372106106
 BoxCollider2D:
   m_ObjectHideFlags: 0

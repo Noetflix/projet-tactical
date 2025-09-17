@@ -10,8 +10,6 @@ public class MenuClasses : MonoBehaviour
     public static void SetSelectedClass(string className)
     {
         SelectedClass = className; 
-        Debug.Log("Class chosen: " + className);
-        
     }
 
     public void ChooseClass(string className)

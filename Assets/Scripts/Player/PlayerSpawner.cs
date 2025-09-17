@@ -37,6 +37,9 @@ public class PlayerSpawner : MonoBehaviour
 
             GridManager gridManager = FindObjectOfType<GridManager>();
 
+            // Assigner le player transform au script CameraFollow2D de la caméra principale
+            Camera.main.GetComponent<CameraFollow2D>().player = playerInstance.transform;
+
             if (gridManager != null)
             {
                 PlayerController pc = playerInstance.GetComponent<PlayerController>();

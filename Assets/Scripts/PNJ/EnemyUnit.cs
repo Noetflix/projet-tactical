@@ -4,6 +4,8 @@ public class EnemyUnit : MonoBehaviour
 {
     public int health = 100;
 
+    public bool isInCombat = false;
+
     public void TakeDamage(int amount)
     {
         health -= amount;

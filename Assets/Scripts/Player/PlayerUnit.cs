@@ -14,6 +14,8 @@ public class PlayerUnit : MonoBehaviour
     public List<Attack> attacks;
     public List<Item> inventory;
 
+    public bool isInCombat = false;
+
     private void Start()
     {
         // Initialiser les données du joueur en fonction de la classe choisie
